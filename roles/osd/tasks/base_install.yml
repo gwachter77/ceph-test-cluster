@@ -5,3 +5,8 @@
 - name: Setup Ceph repo
   template: src=templates/ceph.repo dest=/etc/yum.repos.d/ceph.repo owner=root group=root mode=0644
 
+- name: Install packages
+  yum: name={{item}} state=installed
+  with_items:
+    - git
+    - python-pip

@@ -3,3 +3,4 @@
 - include: base_install.yml
 - include: ceph-deploy-user.yml
 - include: osd.yml
+- include: ceph-dash.yml

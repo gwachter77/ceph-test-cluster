@@ -1,0 +1,11 @@
+[Unit]
+Description=Ceph Dashboard
+Requires=multi-user.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/opt/ceph-dash/ceph-dash.py
+
+[Install]
+WantedBy=multi-user.target

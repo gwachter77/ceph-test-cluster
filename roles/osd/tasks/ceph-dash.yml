@@ -1,0 +1,14 @@
+---
+- name: Checkout ceph-dash
+  git:
+    repo: https://github.com/Crapworks/ceph-dash.git
+    dest: /opt/ceph-dash
+
+- name: Add ceph-dash service
+  template: src=templates/ceph-dash.service dest=/lib/systemd/system/ceph-dash.service owner=root group=root mode=0644
+
+- name: Install ceph-dash requirements
+  pip: requirements=/opt/ceph-dash/requirements.txt
+
+- name: Enable ceph-dash service
+  service: name=ceph-dash enabled=yes state=started
