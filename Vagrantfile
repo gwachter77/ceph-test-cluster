@@ -8,7 +8,6 @@
 groups = {
   "ceph-admin" => ["ceph-admin"],
   "ceph-osd" => ["ceph-osd1", "ceph-osd2", "ceph-osd3"]
-  "inkscope" => ["inkscope"]
 }
 
 Vagrant.configure(2) do |config|
@@ -37,13 +36,4 @@ Vagrant.configure(2) do |config|
 		end
 	end
 
-  config.vm.define "inkscope" do |ink|
-    admin.vm.hostname = "inkscope"
-    admin.vm.network :private_network, ip: "172.21.12.9"
-    config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "inkscope.yml"
-      ansible.verbose = "true"
-      ansible.groups = groups
-    end
-  end
 end
