@@ -1,0 +1,8 @@
+---
+
+- hosts: ceph-osd
+  strategy: linear
+  become: yes
+  gather_facts: true
+  roles: 
+    - osd
