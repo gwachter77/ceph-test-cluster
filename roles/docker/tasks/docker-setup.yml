@@ -1,0 +1,3 @@
+---
+- name: Enable docker
+  service: name=docker-latest state=started enabled=yes
