@@ -19,6 +19,10 @@ Vagrant.configure(2) do |config|
 		config.vm.define "ceph-osd#{i}" do |osd|
 			osd.vm.hostname = "ceph-osd#{i}"
       osd.vm.network :private_network, ip: "172.21.12.#{i+10}"
+      osd.vm.provider "virtualbox" do |vb|
+        vb.customize ["createhd",  "--filename", "2nd-disk-ceph-osd#{i}", "--size", "20480"]
+        vb.customize ["storageattach", :id, "--storagectl", "IDE", "--port", "1", "--device", "1", "--type", "hdd", "--medium", "2nd-disk-ceph-osd#{i}.vdi"]
+      end
 		end
 	end
 
