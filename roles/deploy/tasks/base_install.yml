@@ -5,9 +5,9 @@
     - git
     - ansible
 
-- name: Install epel
-  yum: name=epel-release state=installed
+#- name: Install epel
+#  yum: name=epel-release state=installed
 
-- name: Install ceph-deploy
-  yum: name=https://download.ceph.com/rpm-kraken/el7/noarch/ceph-deploy-1.5.36-0.noarch.rpm
+#- name: Install ceph-deploy
+#  yum: name=https://download.ceph.com/rpm-kraken/el7/noarch/ceph-deploy-1.5.36-0.noarch.rpm
 

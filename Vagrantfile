@@ -6,8 +6,8 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 groups = {
-  "ceph-admin" => ["ceph-admin"],
-  "ceph-osd" => ["ceph-osd1", "ceph-osd2", "ceph-osd3", "docker"],
+  "ceph-deploy" => ["ceph-deploy"],
+  "ceph-osd" => ["ceph-osd1", "ceph-osd2", "ceph-osd3"],
   "docker" => ["docker"]
 }
 
@@ -31,26 +31,26 @@ Vagrant.configure(2) do |config|
     docker.vm.network :private_network, ip: "172.21.12.50"
   end
 
-	config.vm.define "ceph-admin" do |admin|
-		admin.vm.hostname = "ceph-admin"
+	config.vm.define "ceph-deploy" do |admin|
+		admin.vm.hostname = "ceph-deploy"
     admin.vm.network :private_network, ip: "172.21.12.10"
 	end
 
   config.vm.provision "ansible" do |osd_ansible|
-    osd_ansible.playbook = "ceph-osd.yml"
+    osd_ansible.playbook = "site.yml"
     osd_ansible.verbose = "true"
     osd_ansible.groups = groups
   end
 
-  config.vm.provision "ansible" do |adm_ansible|
-    adm_ansible.playbook = "ceph-deploy.yml"
-    adm_ansible.verbose = "true"
-    adm_ansible.groups = groups
-  end
+#  config.vm.provision "ansible" do |adm_ansible|
+#    adm_ansible.playbook = "ceph-deploy.yml"
+#    adm_ansible.verbose = "true"
+#    adm_ansible.groups = groups
+#  end
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "docker.yml"
-    ansible.verbose = "true"
-    ansible.groups = groups
-  end
+#  config.vm.provision "ansible" do |ansible|
+#    ansible.playbook = "docker.yml"
+#    ansible.verbose = "true"
+#    ansible.groups = groups
+#  end
 end

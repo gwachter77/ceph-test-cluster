@@ -1,0 +1,35 @@
+---
+
+- hosts:
+  - ceph-deploy
+  - ceph-osd
+  - docker
+  strategy: linear
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Install epel
+      yum: name=epel-release state=installed
+
+- hosts: ceph-deploy
+  strategy: linear
+  become: yes
+  gather_facts: true
+  roles: 
+    - deploy
+
+- hosts: ceph-osd
+  strategy: linear
+  become: yes
+  gather_facts: true
+  roles: 
+    - ceph-deploy-user
+    - osd
+
+- hosts: docker
+  strategy: linear
+  become: yes
+  gather_facts: true
+  roles: 
+    - ceph-deploy-user
+    - docker
