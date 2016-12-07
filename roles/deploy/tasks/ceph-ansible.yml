@@ -1,0 +1,11 @@
+---
+- name: Clone ceph-ansible repository
+  git:
+    repo: https://github.com/ceph/ceph-ansible/
+    dest: /opt/ceph-ansible
+
+- name: Setup Ansible hosts file
+  template: src=templates/ansible-hosts dest=/etc/ansible/hosts owner=ceph-deploy group=ceph-deploy mode=0644
+
+- name: Setup Ansible group vars
+template: src=templates/all.yml dest=/opt/ceph-ansible/group_vars/all.yml owner=ceph-deploy group=ceph-deploy mode=0644
