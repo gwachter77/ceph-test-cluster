@@ -9,13 +9,13 @@
   file: path=/home/ceph-deploy/.ssh state=directory mode=700 owner=ceph-deploy group=ceph-deploy
 
 - name: Configure sudo
-  template: src=templates/sudo dest=/etc/sudoers.d/ceph-deploy mode=0440 owner=root group=root
+  copy: src={{role_path}}/files/sudo dest=/etc/sudoers.d/ceph-deploy mode=0440 owner=root group=root
 
 - name: Create ssh client config
-  template: src=templates/ssh_config dest=/home/ceph-deploy/.ssh/config owner=ceph-deploy group=ceph-deploy mode=0644
+  copy: src={{role_path}}/files/ssh_config dest=/home/ceph-deploy/.ssh/config owner=ceph-deploy group=ceph-deploy mode=0644
 
 - name: Set ssh private key
-  template: src=templates/authorized_keys dest=/home/ceph-deploy/.ssh/authorized_keys owner=ceph-deploy group=ceph-deploy mode=0644
+  copy: src={{role_path}}/files/authorized_keys dest=/home/ceph-deploy/.ssh/authorized_keys owner=ceph-deploy group=ceph-deploy mode=0644
 
 - name: Create ceph deploy group
   group: name=ceph gid=167
