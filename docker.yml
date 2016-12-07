@@ -1,8 +1,0 @@
----
-
-- hosts: docker
-  strategy: linear
-  become: yes
-  gather_facts: true
-  roles: 
-    - docker

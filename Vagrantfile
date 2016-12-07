@@ -36,21 +36,9 @@ Vagrant.configure(2) do |config|
     admin.vm.network :private_network, ip: "172.21.12.10"
 	end
 
-  config.vm.provision "ansible" do |osd_ansible|
-    osd_ansible.playbook = "site.yml"
-    osd_ansible.verbose = "true"
-    osd_ansible.groups = groups
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "site.yml"
+    ansible.verbose = "true"
+    ansible.groups = groups
   end
-
-#  config.vm.provision "ansible" do |adm_ansible|
-#    adm_ansible.playbook = "ceph-deploy.yml"
-#    adm_ansible.verbose = "true"
-#    adm_ansible.groups = groups
-#  end
-
-#  config.vm.provision "ansible" do |ansible|
-#    ansible.playbook = "docker.yml"
-#    ansible.verbose = "true"
-#    ansible.groups = groups
-#  end
 end

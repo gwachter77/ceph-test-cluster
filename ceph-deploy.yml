@@ -1,8 +1,0 @@
----
-
-- hosts: ceph-admin
-  strategy: linear
-  become: yes
-  gather_facts: true
-  roles: 
-    - deploy
